@@ -42,5 +42,7 @@ public class Time {
         } else {
             System.out.print(seconds + " seconds.");
         }
+
+        in.close();
     }
 }

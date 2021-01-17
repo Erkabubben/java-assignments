@@ -102,5 +102,7 @@ public class Nine {
                 System.out.println("It's a tie!");
             }
         }
+
+        in.close();
     }
 }
