@@ -36,7 +36,7 @@ public class GameSRP {
         int draws = 0;
 
         do {
-            System.out.println("Scissor (1), rock (2), paper (3) or 0 to quit: ");
+            System.out.print("Scissor (1), rock (2), paper (3) or 0 to quit: ");
             playerChoice = in.nextInt();
             
             if (playerChoice != 0) {
@@ -87,5 +87,6 @@ public class GameSRP {
         } while (playerChoice != 0);
 
         System.out.println("Score: " + playerScore + " (you) " + computerScore + " (computer) " + draws + " (draw).");
+        in.close();
     }
 }
