@@ -9,6 +9,29 @@ import java.util.Scanner;
  *
  */
 public class DayOfWeek {
+    /**
+     * Determines which day to print based on dayOfWeek number.
+     */
+    public static String DayOfWeekString (int dayOfWeek) {
+        switch (dayOfWeek) {
+            case 0:
+                return "Saturday";
+            case 1:
+                return "Sunday";
+            case 2:
+                return "Monday";
+            case 3:
+                return "Tuesday";
+            case 4:
+                return "Wednesday";
+            case 5:
+                return "Thursday";
+            case 6:
+                return "Friday";
+            default:
+                return "";
+        }
+    }
 
     public static void main(String[] args) {
 
@@ -34,36 +57,8 @@ public class DayOfWeek {
         /* Calculate day of week */
         int dayOfWeek = (dayOfMonth + ((26 * (month + 1)) / 10) + (year % 100) + ((year % 100) / 4) + ((year / 100) / 4) + (5 * (year / 100))) % 7;
 
-        /* Determine which day to print based on dayOfWeek number */
-        String dayOfWeekString = "";
-        switch (dayOfWeek) {
-            case 0:
-                dayOfWeekString = "Saturday";
-                break;
-            case 1:
-                dayOfWeekString = "Sunday";
-                break;
-            case 2:
-                dayOfWeekString = "Monday";
-                break;
-            case 3:
-                dayOfWeekString = "Tuesday";
-                break;
-            case 4:
-                dayOfWeekString = "Wednesday";
-                break;
-            case 5:
-                dayOfWeekString = "Thursday";
-                break;
-            case 6:
-                dayOfWeekString = "Friday";
-                break;
-            default:
-                break;
-        }
-
         /* Print day of week */
-        System.out.println("Day of week is " + dayOfWeekString);
+        System.out.println("Day of week is " + DayOfWeekString(dayOfWeek));
         in.close();
     }
 }
