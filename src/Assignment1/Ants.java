@@ -1,46 +1,58 @@
+/**
+ * 
+ */
 package Assignment1;
 import java.util.Random;
 
+/**
+ * @author Erik Lindholm
+ *
+ */
 public class Ants {
 
-    /*public static int[] DetermineNextStep(int antX, int antY) {
-        int[] nextStep = new int[2];
+    public static void RunMultipleSimulationsAndDisplayAverage(int timesToRunSimulation, int boardSizeX, int boardSizeY) {
 
-        if (antX != 8) {
-            return int{1, 0};
-        } else if (antX != 1) {
+        int totalSteps = 0;
 
+        /* Run simulation the specified amount of times */
+        for (int i = 1; i < (timesToRunSimulation + 1); i++) {
+            int simulationResult = RunSimulation(boardSizeX, boardSizeY);
+            System.out.println("Number of steps in simulation " + i + ": " + simulationResult);
+            totalSteps += simulationResult;
         }
-    }*/
 
-    public static void main(String[] args) {
+        /* Calculate and print average amount of steps */
+        System.out.println("Average amount of steps: " + ((totalSteps * 1.0) / timesToRunSimulation));
+    }
 
-
+    public static int RunSimulation(int boardSizeX, int boardSizeY) {
 
         Random rn = new Random();
 
-        boolean[][] chessBoard = new boolean[8][8];
+        boolean[][] chessBoard = new boolean[boardSizeX][boardSizeY];
 
-        int antX = rn.nextInt(8) + 1;
-        int antY = rn.nextInt(8) + 1;
+        int antX = rn.nextInt(boardSizeX) + 1;
+        int antY = rn.nextInt(boardSizeY) + 1;
 
         int steps = 0;
         int squaresVisited = 0;
 
-        while(squaresVisited < 64 && steps < 10000) {
-            if (chessBoard[antX][antY] == false) {
-                chessBoard[antX][antY] = true;
+        while(squaresVisited < (boardSizeX * boardSizeY)) {
+            /* Check if square is visited */
+            if (chessBoard[antX - 1][antY - 1] == false) {
+                chessBoard[antX - 1][antY - 1] = true;
                 squaresVisited++;
             }
+            /* Determine direction for next move */
             while(true) {
                 int newDirection = rn.nextInt(4);
-                if (newDirection == 0 && antX != 8) {   // Right
+                if (newDirection == 0 && antX != boardSizeX) {   // Right
                     antX++;
                     break;
                 } else if (newDirection == 1 && antX != 1) {    // Left
                     antX--;
                     break;
-                } else if (newDirection == 2 && antY != 8) {    // Down
+                } else if (newDirection == 2 && antY != boardSizeY) {    // Down
                     antY++;
                     break;
                 } else if (newDirection == 3 && antY != 1) {    // Up
@@ -50,5 +62,16 @@ public class Ants {
             }
             steps++;
         }
+
+        return steps;
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println("Ants");
+        System.out.println("====");
+        System.out.println("");
+
+        RunMultipleSimulationsAndDisplayAverage(10, 8, 8);
     }
 }
