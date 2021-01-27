@@ -16,6 +16,11 @@ public class Diamonds {
 
     /* Prints out a diamond of asterisks of the given height */
     public static void PrintDiamond(int height) {
+        
+        if (height > 0) {
+            System.out.println("");
+        }
+
         // Print upper half of diamond
         for (int i = 0; i < height; i++) {
             int spaces = height - (i + 1);
@@ -27,6 +32,7 @@ public class Diamonds {
             }
             System.out.println("");
         }
+
         // Print lower half of diamond
         for (int i = (height - 1); i > 0; i--) {
             int spaces = height - i;
@@ -49,12 +55,12 @@ public class Diamonds {
         while (input >= 0) {
             // Ask user to input diamond size
             System.out.print("Give a positive number: ");
-            input = in.nextInt();
-
-            System.out.println("");
-        
-            if (input > 0) {
+            try {
+                input = in.nextInt();
                 PrintDiamond(input);
+            } catch (Exception e) {
+                System.out.println("Only positive numbers are allowed!");
+                in.next();
             }
         }
 

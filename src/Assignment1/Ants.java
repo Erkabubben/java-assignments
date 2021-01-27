@@ -13,6 +13,8 @@ import java.util.Random;
  */
 public class Ants {
 
+    /* Runs the Ant simulator a specified amount of times and then displays the average amount of
+       steps that it took for the ant to finish */
     public static void RunMultipleSimulationsAndDisplayAverage(int timesToRunSimulation, int boardSizeX, int boardSizeY) {
 
         int totalSteps = 0;
@@ -28,6 +30,9 @@ public class Ants {
         System.out.println("Average amount of steps: " + ((totalSteps * 1.0) / timesToRunSimulation));
     }
 
+    /* Simulates an ant's random movements over a chessboard, and returns the amount of steps it
+       takes the ant to cover all the squares of the board ("steps" here refers to moving from one
+       square to another - not actual ant steps.) */
     public static int RunSimulation(int boardSizeX, int boardSizeY) {
 
         Random rn = new Random();

@@ -12,6 +12,9 @@ import java.util.Scanner;
  * amount of days on the job is set to 30 by default.
  */
 public class DangerousWork {
+
+    /* Calculates the amount of days it will take to earn a total salary, if the start salary
+       is doubled every day. A limit of days can also be set. */
     public static int CalculateDaysToEarnSalary(double startSalary, int endSalary, int dayLimit) {
         double salary = startSalary;
         int days = 0;
