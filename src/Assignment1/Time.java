@@ -1,18 +1,16 @@
 /**
+ * Time
  * 
+ * @version 1.0 21 Jan 2021
+ * @author Erik Lindholm
  */
 package Assignment1;
 import java.util.Scanner;
-
 /**
- * @author Erik Lindholm
- *
+ * Asks the user to enter a number of seconds, then prints out the total
+ * number of hours, minutes and seconds that the entered numbered equates to.
  */
 public class Time {
-
-    /**
-	 * @param args
-	 */
     public static void main(String[] args) {
 
         Scanner in = new Scanner(System.in);

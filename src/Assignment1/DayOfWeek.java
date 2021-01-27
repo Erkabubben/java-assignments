@@ -1,17 +1,17 @@
 /**
+ * DayOfWeek
  * 
+ * @version 1.0 21 Jan 2021
+ * @author Erik Lindholm
  */
 package Assignment1;
 import java.util.Scanner;
-
 /**
- * @author Erik Lindholm
- *
+ * Asks the user to input a date, then calculates the day of week of the given date and
+ * prints it to the terminal.
  */
 public class DayOfWeek {
-    /**
-     * Determines which day to print based on dayOfWeek number.
-     */
+    /* Determines which day to print based on dayOfWeek number. */
     public static String DayOfWeekString (int dayOfWeek) {
         switch (dayOfWeek) {
             case 0:
@@ -33,9 +33,7 @@ public class DayOfWeek {
         }
     }
 
-    /**
-     * Calculates the day of week of a given date. Returns a number from 0 to 6, where 0 is Saturday.
-     */
+    /* Calculates the day of week of a given date. Returns a number from 0 to 6, where 0 is Saturday. */
     public static int CalculateDayOfWeek(int year, int month, int dayOfMonth) {
         /* Adjust month */
         if (month == 1) {

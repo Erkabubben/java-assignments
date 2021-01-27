@@ -1,12 +1,15 @@
 /**
+ * Ants
  * 
+ * @version 1.0 21 Jan 2021
+ * @author Erik Lindholm
  */
 package Assignment1;
 import java.util.Random;
-
 /**
- * @author Erik Lindholm
- *
+ * Simulation of the movements of an ant over a chessboard. The simulation ends when
+ * all squares have been visited. Will run a specified amount of times, and then
+ * print out the average amount of steps that it took for the ant to finish.
  */
 public class Ants {
 

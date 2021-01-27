@@ -1,30 +1,78 @@
 /**
+ * Nine
  * 
+ * @version 1.0 21 Jan 2021
+ * @author Erik Lindholm
  */
 package Assignment1;
 import java.util.Random;
 import java.util.Scanner;
 import java.lang.Math;
-
 /**
- * @author Erik Lindholm
- *
+ * A simple dice game where the player and computer each roll a die, then decides whether to
+ * roll another. The goal is to get a total score as close to nine as possible, but without
+ * hitting ten or higher.
  */
 public class Nine {
 
-    static Random random = new Random();
-    
-    /**
-	 * @param args
-	 */
+    /* Determines the winner of the Nine session */
+    public static String DetermineWinner(int playerTotal, int computerTotal) {
+
+        String winner = "";
+
+        // Check if player is fat
+        if (playerTotal >= 10) {
+            System.out.println("Player is fat!");
+            winner = "Computer";
+            // Check if computer is also fat
+            if (computerTotal >= 10) {
+                System.out.println("Computer is fat!");
+                winner = "Tie";
+            }
+        }
+
+        // Check if computer is fat
+        if (winner.equals("") && computerTotal >= 10) {
+            System.out.println("Computer is fat!");
+            winner = "Player";
+        }
+
+        // Otherwise, compare score and determine winner
+        if (winner.equals("")) {
+            int playerScore = Math.abs(9 - playerTotal);
+            int computerScore = Math.abs(9 - computerTotal);
+            if (playerScore < computerScore) {
+                winner = "Player";
+            } else if (playerScore > computerScore) {
+                winner = "Computer";
+            } else if (playerScore == computerScore) {
+                winner = "Tie";
+            }
+        }
+
+        return winner;
+    }
+
+    /* Announces winner (or tie) by printing to the terminal */
+    public static void AnnounceWinner(String winner) {
+        
+        if (winner.equals("Player")) {
+            System.out.println("You won!");
+        } else if (winner.equals("Computer")) {
+            System.out.println("You lost!");
+        } else if (winner.equals("Tie")) {
+            System.out.println("It's a tie!");
+        }
+    }
+
     public static void main(String[] args) {
+
+        Random random = new Random();
 
         int playerDie1 = 0;
         int playerDie2 = 0;
         int computerDie1 = 0;
         int computerDie2 = 0;
-        int playerTotal = 0;
-        int computerTotal = 0;
 
         Scanner in = new Scanner(System.in);
         
@@ -57,50 +105,8 @@ public class Nine {
                 System.out.println("The computer rolls again and gets " + computerDie2 + " in total " + (computerDie1 + computerDie2));
             }
 
-            // Caluclate total
-            playerTotal = playerDie1 + playerDie2;
-            computerTotal = computerDie1 + computerDie2;
-
-            String winner = "";
-
-            // Check if player is fat
-            if (playerTotal >= 10) {
-                System.out.println("Player is fat!");
-                winner = "Computer";
-                // Check if computer is also fat
-                if (computerTotal >= 10) {
-                    System.out.println("Computer is fat!");
-                    winner = "Tie";
-                }
-            }
-
-            // Check if computer is fat
-            if (winner.equals("") && computerTotal >= 10) {
-                System.out.println("Computer is fat!");
-                winner = "Player";
-            }
-
-            // Otherwise, compare score and determine winner
-            if (winner.equals("")) {
-                int playerScore = Math.abs(9 - playerTotal);
-                int computerScore = Math.abs(9 - computerTotal);
-                if (playerScore < computerScore) {
-                    winner = "Player";
-                } else if (playerScore > computerScore) {
-                    winner = "Computer";
-                } else if (playerScore == computerScore) {
-                    winner = "Tie";
-                }
-            }
-
-            // Announce winner (or tie)
-            if (winner.equals("Player")) {
-                System.out.println("You won!");
-            } else if (winner.equals("Computer")) {
-                System.out.println("You lost!");
-            } else if (winner.equals("Tie")) {
-                System.out.println("It's a tie!");
-            }
+            String winner = DetermineWinner((playerDie1 + playerDie2), (computerDie1 + computerDie2));
+            AnnounceWinner(winner);
         }
 
         in.close();

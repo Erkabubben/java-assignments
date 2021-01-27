@@ -1,16 +1,19 @@
 /**
- *
+ * Hex2Dec
+ * 
+ * @version 1.0 21 Jan 2021
+ * @author Erik Lindholm
  */
 package Assignment1;
 import java.util.Scanner;
 import java.lang.Math;
-
 /**
- * @author Erik Lindholm
- *
+ * Asks the user to enter a hexadecimal number, then converts the given number
+ * to a regular decimal number and prints it to the terminal.
  */
 public class Hex2Dec {
 
+    /* Converts a hexadecimal character to a decimal integer */
     public static int hexCharToInt(char c) {
         int cAscii = (int)c;
         if (cAscii >= 48 && cAscii <= 57 ) {
@@ -24,6 +27,7 @@ public class Hex2Dec {
         }
     }
 
+    /* Converts a String representing a hexadecimal number to a decimal Int */
     public static int hexToDecimal(String hex) {
         int total = 0;
         for (int i = 0; i < hex.length(); i++) {

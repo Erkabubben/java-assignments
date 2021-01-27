@@ -1,9 +1,18 @@
+/**
+ * PrintCalendar
+ * 
+ * @version 1.0 21 Jan 2021
+ * @author Erik Lindholm
+ */
 package Assignment1;
 import java.util.Scanner;
-import Assignment1.DayOfWeek;
-
+/**
+ * Prints a calendar of a specified month of a year after 1800 to the terminal.
+ */
 public class PrintCalendar {
 
+    /* Returns the amount of days in a specified month of a year. Takes leap years
+       into account. */
     public static int AmountOfDaysOfMonth(int year, int month) {
         if (month == 1 || month == 3 || month == 5 || month == 7
                 || month == 8 || month == 10 || month == 12) {
@@ -20,6 +29,7 @@ public class PrintCalendar {
         }
     }
 
+    /* Determines whether a given year is a leap year and returns true or false */
     public static boolean YearIsLeapYear(int year) {
         if (!(year % 4 == 0)) {
             return false;
@@ -32,6 +42,7 @@ public class PrintCalendar {
         }
     }
 
+    /* Takes a month number (1-12) and returns the name of the month */
     public static String MonthIntToString(int month) {
         String[] months = {
             "January",
@@ -50,6 +61,7 @@ public class PrintCalendar {
         return months[month - 1];
     }
 
+    /* Creates a two-dimensional int array representing a calendar month. */
     public static int[][] CreateCalendarArray(int dayOfWeekOf1st, int amountOfDaysOfMonth) {
 
         boolean isSettingNumbersToArray = false;
@@ -74,6 +86,16 @@ public class PrintCalendar {
         return calendar;
     }
 
+    /* Pads a string with a specified amount of leading characters, such as spaces or zeroes. */
+    public static String PadStringWithLeadingChars(String s, char c, int stringLength) {
+        while (s.length() < stringLength) {
+            s = c + s;
+        }
+
+        return s;
+    }
+
+    /* Takes a 2D array representing a month calendar and prints it to the console. */
     public static void PrintCalendarArray(int[][] calendar) {
 
         System.out.println("-----------------------------");
@@ -88,9 +110,7 @@ public class PrintCalendar {
                     if (calendar[x][y] != 0) {
                         s = String.valueOf(calendar[x][y]);
                     }
-                    while (s.length() < 4) {
-                        s = " " + s;
-                    }
+                    s = PadStringWithLeadingChars(s, ' ', 4);
                     System.out.print(s);
                 }
                 System.out.println("");
@@ -108,12 +128,16 @@ public class PrintCalendar {
         System.out.print("Enter month (1-12): ");
         int month = in.nextInt();
 
+        /* Determine the day of week of the first day of the month, and the amount of days of the month */
         int dayOfWeekOf1st = ((DayOfWeek.CalculateDayOfWeek(year, month, 1) - 2) + 7) % 7;
         int amountOfDaysOfMonth = AmountOfDaysOfMonth(year, month);
 
+        /* Create and print calendar month */
         int[][] calendar = CreateCalendarArray(dayOfWeekOf1st, amountOfDaysOfMonth);
 
         System.out.println(MonthIntToString(month) + " " + year);
         PrintCalendarArray(calendar);
+
+        in.close();
     }
 }

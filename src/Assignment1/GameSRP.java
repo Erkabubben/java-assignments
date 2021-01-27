@@ -1,18 +1,20 @@
 /**
+ * GameSRP
  * 
+ * @version 1.0 21 Jan 2021
+ * @author Erik Lindholm
  */
 package Assignment1;
 import java.util.Scanner;
 import java.util.Random;
-
 /**
- * @author Erik Lindholm
- *
+ * Simulates a game of scissors-rock-paper between the user and the computer.
+ * The game will repeat until the player inputs 0, at which point the total
+ * score will be presented and the game will close.
  */
 public class GameSRP {
-    /**
-     * Returns the given scissors-rock-paper choice number as a string.
-     */
+
+    /* Returns the given scissors-rock-paper choice number as a string.*/
     public static String IntToStringSRP (int choice) {
         if (choice == 1) {
             return "scissor";
@@ -22,6 +24,44 @@ public class GameSRP {
             return "paper";
         } else {
             return "";
+        }
+    }
+
+    /* Determines winner the winner of a session of scissors-rock-paper. Will return -1
+       on a player loss, 0 on a tie and 1 on a player win. */
+    public static int DetermineSRPWinner(int playerChoice, int computerChoice) {
+        if (playerChoice == 1) { // Player chose scissor
+            if (computerChoice == 1) { // Computer chose scissor = Tie
+                return 0;
+            } else if (computerChoice == 2) { // Computer chose rock = Loss
+                return -1;
+            } else if (computerChoice == 3) { // Computer chose scissor = Win
+                return 1;
+            } else {
+                return 0;
+            }
+        } else if (playerChoice == 2) { // Player chose rock
+            if (computerChoice == 1) { // Computer chose scissor = Win
+                return 1;
+            } else if (computerChoice == 2) { // Computer chose rock = Tie
+                return 0;
+            } else if (computerChoice == 3) { // Computer chose paper = Loss
+                return -1;
+            } else {
+                return 0;
+            }
+        } else if (playerChoice == 3) { // Player chose paper
+            if (computerChoice == 1) { // Computer chose scissor = Loss
+                return -1;
+            } else if (computerChoice == 2) { // Computer chose rock = Win
+                return 1;
+            } else if (computerChoice == 3) { // Computer chose paper = Tie
+                return 0;
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
         }
     }
 
@@ -42,34 +82,8 @@ public class GameSRP {
             if (playerChoice != 0) {
 
                 int computerChoice = rn.nextInt(3) + 1;
-                int winOrLoss = 0;
 
-                /* Determine winner */
-                if (playerChoice == 1) { // Player chose scissor
-                    if (computerChoice == 1) { // Computer chose scissor = Tie
-                        winOrLoss = 0;
-                    } else if (computerChoice == 2) { // Computer chose rock = Loss
-                        winOrLoss = -1;
-                    } else if (computerChoice == 3) { // Computer chose scissor = Win
-                        winOrLoss = 1;
-                    }
-                } else if (playerChoice == 2) { // Player chose rock
-                    if (computerChoice == 1) { // Computer chose scissor = Win
-                        winOrLoss = 1;
-                    } else if (computerChoice == 2) { // Computer chose rock = Tie
-                        winOrLoss = 0;
-                    } else if (computerChoice == 3) { // Computer chose paper = Loss
-                        winOrLoss = -1;
-                    }
-                } else if (playerChoice == 3) { // Player chose paper
-                    if (computerChoice == 1) { // Computer chose scissor = Loss
-                        winOrLoss = -1;
-                    } else if (computerChoice == 2) { // Computer chose rock = Win
-                        winOrLoss = 1;
-                    } else if (computerChoice == 3) { // Computer chose paper = Tie
-                        winOrLoss = 0;
-                    }
-                }
+                int winOrLoss = DetermineSRPWinner(playerChoice, computerChoice);
 
                 /* Announce winner (or tie). */
                 if (winOrLoss == -1) {
@@ -83,7 +97,7 @@ public class GameSRP {
                     playerScore++;
                 }
             }
-
+            
         } while (playerChoice != 0);
 
         System.out.println("Score: " + playerScore + " (you) " + computerScore + " (computer) " + draws + " (draw).");
