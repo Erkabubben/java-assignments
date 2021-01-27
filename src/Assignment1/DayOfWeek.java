@@ -33,6 +33,23 @@ public class DayOfWeek {
         }
     }
 
+    /**
+     * Calculates the day of week of a given date. Returns a number from 0 to 6, where 0 is Saturday.
+     */
+    public static int CalculateDayOfWeek(int year, int month, int dayOfMonth) {
+        /* Adjust month */
+        if (month == 1) {
+            month = 13;
+            year--;
+        } else if (month == 2) {
+            month = 14;
+            year--;
+        }
+
+        /* Calculate day of week */
+        return (dayOfMonth + ((26 * (month + 1)) / 10) + (year % 100) + ((year % 100) / 4) + ((year / 100) / 4) + (5 * (year / 100))) % 7;
+    }
+
     public static void main(String[] args) {
 
         Scanner in = new Scanner(System.in);
@@ -45,20 +62,8 @@ public class DayOfWeek {
         System.out.print("Enter day of the month (1-31): ");
         int dayOfMonth = in.nextInt();
 
-        /* Adjust month */
-        if (month == 1) {
-            month = 13;
-            year--;
-        } else if (month == 2) {
-            month = 14;
-            year--;
-        }
-
-        /* Calculate day of week */
-        int dayOfWeek = (dayOfMonth + ((26 * (month + 1)) / 10) + (year % 100) + ((year % 100) / 4) + ((year / 100) / 4) + (5 * (year / 100))) % 7;
-
         /* Print day of week */
-        System.out.println("Day of week is " + DayOfWeekString(dayOfWeek));
+        System.out.println("Day of week is " + DayOfWeekString(CalculateDayOfWeek(year, month, dayOfMonth)));
         in.close();
     }
 }

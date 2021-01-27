@@ -39,5 +39,7 @@ public class Hex2Dec {
         System.out.print("Enter a hex number: ");
         String enteredHex = in.nextLine();
         System.out.println("The decimal value for " + enteredHex + " is " + hexToDecimal(enteredHex) + ".");
+
+        in.close();
     }
 }
